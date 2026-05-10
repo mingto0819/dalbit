@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        balgan: {
+        dalbit: {
           red: '#A41818',
           'red-deep': '#7B1313',
           cream: '#F5E6C8',

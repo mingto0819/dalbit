@@ -2,7 +2,7 @@ import { ChevronLeft, ChevronRight } from './icons/Icons'
 
 const recipes = [
   {
-    title: 'BALGAN KALE SALAD',
+    title: 'DALBIT KALE SALAD',
     bgFrom: '#3F6B3A',
     bgTo: '#1d3a1c',
     glyph: 'salad',
@@ -14,7 +14,7 @@ const recipes = [
     glyph: 'spread',
   },
   {
-    title: 'SPICY BALGAN NACHOS',
+    title: 'SPICY DALBIT NACHOS',
     bgFrom: '#C8923B',
     bgTo: '#7a4f0f',
     glyph: 'nachos',
@@ -71,7 +71,7 @@ function RecipeArt({ glyph }) {
           fontSize="14"
           fill="#A41818"
         >
-          BALGAN
+          DALBIT
         </text>
       </g>
     )
@@ -107,12 +107,12 @@ function RecipeArt({ glyph }) {
 
 export default function Recipes() {
   return (
-    <section className="bg-balgan-cream-soft text-balgan-navy py-20 md:py-28 relative">
+    <section className="bg-dalbit-cream-soft text-dalbit-navy py-20 md:py-28 relative">
       <div className="max-w-[1280px] mx-auto px-6 text-center">
         <h2 className="font-display text-3xl md:text-5xl tracking-wide">
-          RECIPES WITH BALGAN
+          RECIPES WITH DALBIT
         </h2>
-        <p className="mt-5 max-w-2xl mx-auto text-sm md:text-base text-balgan-navy/80">
+        <p className="mt-5 max-w-2xl mx-auto text-sm md:text-base text-dalbit-navy/80">
           See how our Korean fermented Chojang lights up everyday dishes —
           <br className="hidden md:block" />
           from snacks and dips to brunch and cocktails.
@@ -121,7 +121,7 @@ export default function Recipes() {
         <div className="relative mt-12 md:mt-14">
           <button
             aria-label="Previous"
-            className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-balgan-red text-balgan-cream items-center justify-center shadow-md hover:bg-balgan-red-deep transition-colors"
+            className="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-dalbit-red text-dalbit-cream items-center justify-center shadow-md hover:bg-dalbit-red-deep transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
@@ -143,7 +143,7 @@ export default function Recipes() {
                   </svg>
                 </div>
                 <div className="py-5">
-                  <h3 className="font-display text-balgan-navy text-base md:text-lg tracking-wide">
+                  <h3 className="font-display text-dalbit-navy text-base md:text-lg tracking-wide">
                     {r.title}
                   </h3>
                 </div>
@@ -153,7 +153,7 @@ export default function Recipes() {
 
           <button
             aria-label="Next"
-            className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-balgan-red text-balgan-cream items-center justify-center shadow-md hover:bg-balgan-red-deep transition-colors"
+            className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-dalbit-red text-dalbit-cream items-center justify-center shadow-md hover:bg-dalbit-red-deep transition-colors"
           >
             <ChevronRight className="w-5 h-5" />
           </button>

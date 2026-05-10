@@ -39,8 +39,8 @@ export default function Ingredients() {
         <rect width="1440" height="720" fill="#000" opacity="0.35" />
       </svg>
 
-      <div className="relative max-w-[1440px] mx-auto px-6 py-24 md:py-32 text-center text-balgan-cream">
-        <h2 className="font-display text-balgan-cream text-4xl md:text-6xl tracking-wide">
+      <div className="relative max-w-[1440px] mx-auto px-6 py-24 md:py-32 text-center text-dalbit-cream">
+        <h2 className="font-display text-dalbit-cream text-4xl md:text-6xl tracking-wide">
           Ingredients
         </h2>
 

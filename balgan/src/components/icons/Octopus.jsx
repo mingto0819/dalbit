@@ -1,4 +1,4 @@
-// Stylized octopus illustration in cream — captures BALGAN's mark
+// Stylized octopus illustration in cream — captures DALBIT's mark
 export default function Octopus({ className = '', stroke = 'currentColor' }) {
   return (
     <svg viewBox="0 0 600 380" fill="none" className={className} aria-hidden="true">

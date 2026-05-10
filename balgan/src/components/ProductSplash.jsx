@@ -79,7 +79,7 @@ export default function ProductSplash() {
                 fontSize="22"
                 fill="#A41818"
               >
-                BALGAN
+                DALBIT
               </text>
               <text
                 x="80"
