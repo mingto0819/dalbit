@@ -8,7 +8,7 @@ export default function FooterCTA() {
       <div className="holo-canvas text-center pt-16 md:pt-24 pb-10 md:pb-14 px-6">
         <div className="max-w-[900px] mx-auto">
           <p className="font-display text-dalbit-mist text-sm md:text-base tracking-[0.18em] flex items-center justify-center gap-3">
-            KOREAN CHOJANG SAUCE
+            BORN WITH ART, CRAFTED FOR HEALTH
             <Crescent className="w-4 h-4 text-dalbit-silver holo-glow" />
           </p>
 
