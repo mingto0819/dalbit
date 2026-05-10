@@ -1,4 +1,4 @@
-// Moon-rabbit (달토끼) — sitting upright, pounding rice cake / chojang in a mortar.
+// Moon-rabbit (달토끼) — sitting upright, pounding chojang in a mortar.
 // Composition: crescent moon top-left, sparkles, mortar bottom-center, rabbit on the
 // right gripping a vertical pestle. The pestle + paws (.rm-pound) drop into the mortar
 // while the eye (.rm-eye) blinks and droplets (.rm-splash) burst out — animations live
@@ -47,77 +47,89 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
         <use href={`#${id}-sparkle`} x="250" y="40" width="10" height="10" />
       </g>
 
-      {/* === Rabbit body (sitting upright, profile facing left) === */}
-      <g fill={`url(#${grad})`} stroke={`url(#${grad})`} strokeWidth="1">
-        {/* Tail (small fluff) */}
-        <ellipse cx="380" cy="290" rx="14" ry="12" />
+      {/* === Rabbit silhouette (sitting upright, profile facing left) ===
+          Drawn as a single fill group so head + body merge as one iridescent mass. */}
+      <g fill={`url(#${grad})`} stroke="none">
+        {/* Tail — small fluff peeking from the back */}
+        <ellipse cx="404" cy="288" rx="12" ry="9" />
 
-        {/* Body — egg-shaped sitting */}
+        {/* Body — pear-shaped, settled on hind legs */}
         <path
-          d="M260 250
-             c-6 60 24 96 70 96
-             c46 0 70 -36 64 -90
-             c-4 -36 -28 -58 -64 -58
-             c-36 0 -64 18 -70 52z"
+          d="
+            M 286 234
+            C 262 246, 248 296, 264 342
+            C 278 374, 314 386, 352 380
+            C 392 374, 414 354, 414 316
+            C 414 282, 404 244, 376 224
+            C 346 206, 308 216, 286 234 Z
+          "
         />
 
-        {/* Hind leg accent */}
+        {/* Subtle haunch shading — adds dimension to the seated pose */}
         <path
-          d="M278 308
-             c-2 18 12 30 30 28
-             c14 -2 18 -12 12 -22
-             c-8 -12 -38 -16 -42 -6z"
+          d="
+            M 304 322
+            C 296 342, 312 366, 348 366
+            C 376 366, 388 354, 386 338
+            C 380 322, 332 314, 304 322 Z
+          "
           fill="#0B0B10"
-          opacity="0.35"
-          stroke="none"
+          opacity="0.18"
         />
 
-        {/* Head */}
-        <ellipse cx="320" cy="200" rx="42" ry="38" />
+        {/* Head — soft egg shape, set above front of body */}
+        <ellipse cx="320" cy="196" rx="40" ry="36" />
 
-        {/* Cheek/jaw curve hint */}
+        {/* Second ear (behind, lower opacity for depth) */}
         <path
-          d="M286 214 q14 14 30 14"
-          fill="none"
-          stroke={`url(#${grad})`}
-          strokeWidth="1.2"
-          opacity="0.6"
+          d="
+            M 344 162
+            C 348 116, 360 76, 374 56
+            C 376 92, 372 134, 358 170 Z
+          "
+          opacity="0.55"
         />
 
-        {/* Long ear (raised) */}
-        <path d="M312 168 q-14 -64 4 -100 q22 38 8 100z" />
-        {/* Inner ear (cutout) */}
+        {/* Front ear — long, gentle curve, rounded tip */}
         <path
-          d="M315 162 q-8 -50 4 -82 q14 30 4 82z"
-          fill="#0B0B10"
-          stroke="none"
+          d="
+            M 308 168
+            C 296 110, 308 56, 322 38
+            C 342 62, 348 116, 338 168
+            Q 322 172, 308 168 Z
+          "
         />
-        {/* Second ear hint behind */}
-        <path d="M328 168 q-4 -52 16 -84 q12 36 0 84z" opacity="0.55" />
-
-        {/* Nose */}
-        <ellipse cx="282" cy="208" rx="3.5" ry="2.6" fill="#0B0B10" stroke="none" />
-        {/* Mouth hint */}
-        <path d="M282 214 q4 6 10 4" fill="none" stroke="#0B0B10" strokeWidth="1.4" opacity="0.7" />
       </g>
 
-      {/* Eye — separate so it can blink */}
-      <g className="rm-eye" style={{ transformOrigin: '296px 198px' }}>
-        <ellipse cx="296" cy="198" rx="3.6" ry="4.4" fill="#0B0B10" />
+      {/* Inner ear (negative space) */}
+      <path
+        d="
+          M 314 156
+          C 308 118, 318 80, 326 60
+          C 338 82, 342 118, 332 158
+          Q 322 160, 314 156 Z
+        "
+        fill="#0B0B10"
+      />
+
+      {/* Nose — small dark dot at the muzzle */}
+      <ellipse cx="283" cy="208" rx="3.6" ry="2.6" fill="#0B0B10" />
+
+      {/* Eye — animatable, blinks at impact */}
+      <g className="rm-eye" style={{ transformOrigin: '298px 192px' }}>
+        <ellipse cx="298" cy="192" rx="3.4" ry="4.2" fill="#0B0B10" />
+        <circle cx="297" cy="190" r="1.1" fill="#ffffff" opacity="0.65" />
       </g>
 
-      {/* === Mortar (절구) — bottom center === */}
+      {/* === Mortar (절구) — centered under the pestle === */}
       <g transform="translate(140 332)">
-        {/* Outer bowl */}
         <path
           d="M0 0 h140 l-12 60 a16 16 0 0 1 -16 12 H28 a16 16 0 0 1 -16 -12z"
           fill={`url(#${grad})`}
           stroke={`url(#${grad})`}
           strokeWidth="1.5"
         />
-        {/* Top opening */}
         <ellipse cx="70" cy="0" rx="70" ry="11" fill="#0B0B10" stroke={`url(#${grad})`} strokeWidth="2" />
-        {/* Sauce contents — small puddle */}
         <ellipse cx="70" cy="2" rx="50" ry="6" fill={`url(#${grad})`} opacity="0.85" />
       </g>
 
@@ -131,41 +143,51 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
             <circle cx="-78" cy="-4" r="6" />
             <circle cx="-94" cy="-14" r="4" />
             <circle cx="-66" cy="-18" r="3.5" />
-            <ellipse cx="-50" cy="-22" rx="3" ry="6" transform="rotate(-25 -50 -22)" />
+            <ellipse cx="-50" cy="-24" rx="3" ry="6" transform="rotate(-25 -50 -24)" />
             {/* Right side */}
             <circle cx="78" cy="-4" r="6" />
             <circle cx="92" cy="-14" r="4" />
             <circle cx="62" cy="-18" r="3.5" />
-            <ellipse cx="50" cy="-22" rx="3" ry="6" transform="rotate(25 50 -22)" />
+            <ellipse cx="50" cy="-24" rx="3" ry="6" transform="rotate(25 50 -24)" />
             {/* Up the middle */}
             <circle cx="0" cy="-22" r="4.5" />
-            <circle cx="-22" cy="-30" r="2.6" />
-            <circle cx="20" cy="-30" r="2.6" />
-            <circle cx="0" cy="-40" r="2" />
+            <circle cx="-22" cy="-32" r="2.6" />
+            <circle cx="22" cy="-32" r="2.6" />
+            <circle cx="0" cy="-42" r="2" />
           </g>
         </g>
       </g>
 
       {/* === Pestle + front paws — animated downward strike === */}
       <g className="rm-pound">
-        {/* Pestle (vertical) */}
+        {/* Pestle — vertical, centered over mortar (x=210) */}
         <g>
-          {/* Top knob (handle bulge) */}
-          <ellipse cx="220" cy="98" rx="22" ry="14" fill={`url(#${grad})`} />
-          {/* Shaft */}
-          <rect x="208" y="108" width="24" height="184" rx="8" fill={`url(#${grad})`} />
-          {/* Bottom rounded head */}
-          <ellipse cx="220" cy="296" rx="18" ry="12" fill={`url(#${grad})`} />
-          {/* Subtle inner highlight */}
-          <rect x="212" y="114" width="4" height="170" rx="2" fill="#ffffff" opacity="0.18" />
+          <ellipse cx="210" cy="98" rx="22" ry="14" fill={`url(#${grad})`} />
+          <rect x="198" y="108" width="24" height="184" rx="8" fill={`url(#${grad})`} />
+          <ellipse cx="210" cy="296" rx="18" ry="12" fill={`url(#${grad})`} />
+          <rect x="202" y="114" width="4" height="170" rx="2" fill="#ffffff" opacity="0.18" />
         </g>
 
-        {/* Rabbit's front paws gripping the pestle (drawn over it) */}
-        <g fill={`url(#${grad})`} stroke="#0B0B10" strokeWidth="0.5">
-          {/* Upper paw */}
-          <ellipse cx="246" cy="160" rx="18" ry="12" transform="rotate(-22 246 160)" />
+        {/* Forepaws gripping the pestle — organic teardrop shape, two-handed grip */}
+        <g fill={`url(#${grad})`}>
+          {/* Upper paw (closer to body, palm wraps the shaft) */}
+          <path
+            d="
+              M 258 146
+              C 240 144, 220 152, 220 168
+              C 220 182, 238 188, 256 182
+              C 270 178, 270 152, 258 146 Z
+            "
+          />
           {/* Lower paw */}
-          <ellipse cx="248" cy="208" rx="18" ry="12" transform="rotate(-18 248 208)" />
+          <path
+            d="
+              M 258 198
+              C 240 196, 220 204, 220 220
+              C 220 234, 238 240, 256 234
+              C 270 230, 270 204, 258 198 Z
+            "
+          />
         </g>
       </g>
     </svg>
