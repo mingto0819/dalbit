@@ -9,7 +9,7 @@ import FooterCTA from './components/FooterCTA'
 
 function App() {
   return (
-    <div className="min-h-screen bg-dalbit-red text-dalbit-cream">
+    <div className="min-h-screen bg-dalbit-black text-dalbit-silver">
       <Header />
       <main>
         <Hero />
