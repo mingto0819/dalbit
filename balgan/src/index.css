@@ -81,52 +81,57 @@ h3 {
     drop-shadow(0 0 14px rgba(102, 225, 255, 0.18));
 }
 
-/* === Rabbit pounding animation =========================================
-   .rm-pound  : the pestle + paws translate down on impact then rebound
-   .rm-eye    : eye scales vertically (closed) at the moment of impact
-   .rm-splash : sauce droplets burst out of the mortar at impact
-   Cycle: 1.4s, impact at ~50% so eye-blink and splash sync to it.
-*/
-.rm-pound {
-  transform-origin: 50% 0%;
-  animation: rm-pound 1.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-  will-change: transform;
+/* === DALBIT logo motion ================================================
+   The logo PNG itself is never modified — these classes wrap around the
+   <img> element to suggest the rabbit's pounding rhythm:
+     .dalbit-logo  : whole logo bobs up, snaps down at impact, scales 1.01x,
+                     and emits an iridescent drop-shadow flare on the strike
+     .dalbit-aura  : radial holographic burst around the mortar area on impact
+   Cycle: 1.4s, impact at ~50%. */
+.dalbit-logo {
+  animation: dalbit-pound 1.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  transform-origin: 50% 60%;
+  will-change: transform, filter;
 }
-@keyframes rm-pound {
-  0%, 28%   { transform: translateY(-14px) rotate(-1.5deg); }
-  46%       { transform: translateY(38px) rotate(0.5deg); }
-  52%       { transform: translateY(46px) rotate(1deg); }
-  60%       { transform: translateY(28px) rotate(0deg); }
-  78%, 100% { transform: translateY(-14px) rotate(-1.5deg); }
+@keyframes dalbit-pound {
+  0%, 28% {
+    transform: translateY(-6px);
+    filter: drop-shadow(0 6px 14px rgba(176, 132, 255, 0.18));
+  }
+  46% { transform: translateY(0); }
+  52% {
+    transform: translateY(4px) scale(1.012);
+    filter:
+      drop-shadow(0 0 22px rgba(176, 132, 255, 0.55))
+      drop-shadow(0 0 36px rgba(102, 225, 255, 0.45));
+  }
+  62% { transform: translateY(-2px) scale(1); }
+  78%, 100% {
+    transform: translateY(-6px);
+    filter: drop-shadow(0 6px 14px rgba(176, 132, 255, 0.18));
+  }
 }
 
-.rm-eye {
-  transform-origin: center;
-  animation: rm-blink 1.4s ease-in-out infinite;
-  will-change: transform;
-}
-@keyframes rm-blink {
-  0%, 40%   { transform: scaleY(1); }
-  46%, 58%  { transform: scaleY(0.08); }
-  62%, 100% { transform: scaleY(1); }
-}
-
-.rm-splash {
-  transform-origin: 0 0;
+.dalbit-aura {
+  background:
+    radial-gradient(circle at 30% 65%, rgba(102, 225, 255, 0.55), transparent 28%),
+    radial-gradient(circle at 30% 62%, rgba(176, 132, 255, 0.42), transparent 38%),
+    radial-gradient(circle at 32% 68%, rgba(255, 110, 199, 0.35), transparent 32%);
+  mix-blend-mode: screen;
   opacity: 0;
-  animation: rm-splash 1.4s ease-out infinite;
+  animation: dalbit-aura 1.4s ease-out infinite;
   will-change: transform, opacity;
 }
-@keyframes rm-splash {
-  0%, 44%   { opacity: 0; transform: scale(0.35); }
-  50%       { opacity: 1; transform: scale(1); }
-  62%       { opacity: 0.55; transform: scale(1.35); }
-  78%, 100% { opacity: 0; transform: scale(1.55); }
+@keyframes dalbit-aura {
+  0%, 44% { opacity: 0; transform: scale(0.5); }
+  50%     { opacity: 0.9; transform: scale(1); }
+  62%     { opacity: 0.45; transform: scale(1.2); }
+  78%, 100% { opacity: 0; transform: scale(1.4); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rm-pound, .rm-eye, .rm-splash { animation: none; }
-  .rm-splash { opacity: 0; }
+  .dalbit-logo, .dalbit-aura { animation: none; }
+  .dalbit-aura { opacity: 0; }
 }
 
 /* Subtle scan line / film grain feel for the dark base */
