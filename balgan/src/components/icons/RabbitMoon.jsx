@@ -1,8 +1,10 @@
-// Moon-rabbit (달토끼) — sitting upright, pounding chojang in a mortar.
-// Composition: crescent moon top-left, sparkles, mortar bottom-center, rabbit on the
-// right gripping a vertical pestle. The pestle + paws (.rm-pound) drop into the mortar
-// while the eye (.rm-eye) blinks and droplets (.rm-splash) burst out — animations live
-// in src/index.css.
+// Moon-rabbit (달토끼) mark — composition mirrors the DALBIT brand logo:
+// crescent moon (upper-left), rabbit sitting upright on the right gripping a
+// diagonal pestle that lands in a mortar at the lower-left. Logo design is
+// preserved; the only additions are the dynamic motion layers:
+//   .rm-pound  — pestle + paws translate along the pestle axis on impact
+//   .rm-eye    — eye blink synced to the strike
+//   .rm-splash — holographic droplets burst from the mortar rim
 export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
   const grad = `${id}-grad`
   const moon = `${id}-moon`
@@ -40,20 +42,16 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
       {/* Ambient sparkles */}
       <g>
         <use href={`#${id}-sparkle`} x="160" y="60" width="20" height="20" />
-        <use href={`#${id}-sparkle`} x="60" y="200" width="14" height="14" />
+        <use href={`#${id}-sparkle`} x="60" y="210" width="14" height="14" />
         <use href={`#${id}-sparkle`} x="430" y="120" width="16" height="16" />
-        <use href={`#${id}-sparkle`} x="40" y="340" width="12" height="12" />
+        <use href={`#${id}-sparkle`} x="44" y="360" width="12" height="12" />
         <use href={`#${id}-sparkle`} x="430" y="380" width="14" height="14" />
         <use href={`#${id}-sparkle`} x="250" y="40" width="10" height="10" />
       </g>
 
-      {/* === Rabbit silhouette (sitting upright, profile facing left) ===
-          Drawn as a single fill group so head + body merge as one iridescent mass. */}
+      {/* === Rabbit silhouette (preserved from logo, profile facing left) === */}
       <g fill={`url(#${grad})`} stroke="none">
-        {/* Tail — small fluff peeking from the back */}
         <ellipse cx="404" cy="288" rx="12" ry="9" />
-
-        {/* Body — pear-shaped, settled on hind legs */}
         <path
           d="
             M 286 234
@@ -64,8 +62,6 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
             C 346 206, 308 216, 286 234 Z
           "
         />
-
-        {/* Subtle haunch shading — adds dimension to the seated pose */}
         <path
           d="
             M 304 322
@@ -76,11 +72,7 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
           fill="#0B0B10"
           opacity="0.18"
         />
-
-        {/* Head — soft egg shape, set above front of body */}
         <ellipse cx="320" cy="196" rx="40" ry="36" />
-
-        {/* Second ear (behind, lower opacity for depth) */}
         <path
           d="
             M 344 162
@@ -89,8 +81,6 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
           "
           opacity="0.55"
         />
-
-        {/* Front ear — long, gentle curve, rounded tip */}
         <path
           d="
             M 308 168
@@ -101,7 +91,6 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
         />
       </g>
 
-      {/* Inner ear (negative space) */}
       <path
         d="
           M 314 156
@@ -111,18 +100,54 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
         "
         fill="#0B0B10"
       />
-
-      {/* Nose — small dark dot at the muzzle */}
       <ellipse cx="283" cy="208" rx="3.6" ry="2.6" fill="#0B0B10" />
 
-      {/* Eye — animatable, blinks at impact */}
+      {/* Eye — animatable */}
       <g className="rm-eye" style={{ transformOrigin: '298px 192px' }}>
         <ellipse cx="298" cy="192" rx="3.4" ry="4.2" fill="#0B0B10" />
         <circle cx="297" cy="190" r="1.1" fill="#ffffff" opacity="0.65" />
       </g>
 
-      {/* === Mortar (절구) — centered under the pestle === */}
-      <g transform="translate(140 332)">
+      {/* === Pestle + paws — drawn vertically and rotated +30° around the paw pivot
+          so the entire stick (and grip) sits on a diagonal axis. The inner
+          .rm-pound group then animates translateY *inside* that rotated frame,
+          which translates the pestle down-left along its own axis — natural
+          pounding motion straight into the mortar. === */}
+      <g transform="rotate(30 260 215)">
+        <g className="rm-pound">
+          {/* Pestle, drawn as if vertical at x=260 */}
+          <g>
+            <ellipse cx="260" cy="158" rx="22" ry="14" fill={`url(#${grad})`} />
+            <rect x="248" y="168" width="24" height="170" rx="8" fill={`url(#${grad})`} />
+            <ellipse cx="260" cy="344" rx="18" ry="12" fill={`url(#${grad})`} />
+            <rect x="252" y="174" width="4" height="160" rx="2" fill="#ffffff" opacity="0.18" />
+          </g>
+
+          {/* Forepaws gripping the shaft, two-handed */}
+          <g fill={`url(#${grad})`}>
+            <path
+              d="
+                M 286 208
+                C 268 204, 248 212, 248 228
+                C 248 242, 266 248, 284 242
+                C 298 238, 298 214, 286 208 Z
+              "
+            />
+            <path
+              d="
+                M 286 246
+                C 268 242, 248 250, 248 266
+                C 248 280, 266 286, 284 280
+                C 298 276, 298 252, 286 246 Z
+              "
+            />
+          </g>
+        </g>
+      </g>
+
+      {/* === Mortar (절구) — lower-left, drawn AFTER the pestle so the rim
+          covers the bottom of the pestle for a "plunged in" look === */}
+      <g transform="translate(120 320)">
         <path
           d="M0 0 h140 l-12 60 a16 16 0 0 1 -16 12 H28 a16 16 0 0 1 -16 -12z"
           fill={`url(#${grad})`}
@@ -133,61 +158,23 @@ export default function RabbitMoon({ className = '', id = 'holo-rabbit' }) {
         <ellipse cx="70" cy="2" rx="50" ry="6" fill={`url(#${grad})`} opacity="0.85" />
       </g>
 
-      {/* === Splash droplets — bursting outward from mortar opening at impact ===
-          Wrapper translates origin to (210, 332) (mortar rim center).
-          Inner group `.rm-splash` scales from there, so all droplets disperse outward. */}
-      <g transform="translate(210 332)">
+      {/* === Splash droplets — anchored at mortar rim center (190, 320) === */}
+      <g transform="translate(190 320)">
         <g className="rm-splash">
           <g fill={`url(#${grad})`}>
-            {/* Left side */}
             <circle cx="-78" cy="-4" r="6" />
             <circle cx="-94" cy="-14" r="4" />
             <circle cx="-66" cy="-18" r="3.5" />
             <ellipse cx="-50" cy="-24" rx="3" ry="6" transform="rotate(-25 -50 -24)" />
-            {/* Right side */}
             <circle cx="78" cy="-4" r="6" />
             <circle cx="92" cy="-14" r="4" />
             <circle cx="62" cy="-18" r="3.5" />
             <ellipse cx="50" cy="-24" rx="3" ry="6" transform="rotate(25 50 -24)" />
-            {/* Up the middle */}
             <circle cx="0" cy="-22" r="4.5" />
             <circle cx="-22" cy="-32" r="2.6" />
             <circle cx="22" cy="-32" r="2.6" />
             <circle cx="0" cy="-42" r="2" />
           </g>
-        </g>
-      </g>
-
-      {/* === Pestle + front paws — animated downward strike === */}
-      <g className="rm-pound">
-        {/* Pestle — vertical, centered over mortar (x=210) */}
-        <g>
-          <ellipse cx="210" cy="98" rx="22" ry="14" fill={`url(#${grad})`} />
-          <rect x="198" y="108" width="24" height="184" rx="8" fill={`url(#${grad})`} />
-          <ellipse cx="210" cy="296" rx="18" ry="12" fill={`url(#${grad})`} />
-          <rect x="202" y="114" width="4" height="170" rx="2" fill="#ffffff" opacity="0.18" />
-        </g>
-
-        {/* Forepaws gripping the pestle — organic teardrop shape, two-handed grip */}
-        <g fill={`url(#${grad})`}>
-          {/* Upper paw (closer to body, palm wraps the shaft) */}
-          <path
-            d="
-              M 258 146
-              C 240 144, 220 152, 220 168
-              C 220 182, 238 188, 256 182
-              C 270 178, 270 152, 258 146 Z
-            "
-          />
-          {/* Lower paw */}
-          <path
-            d="
-              M 258 198
-              C 240 196, 220 204, 220 220
-              C 220 234, 238 240, 256 234
-              C 270 230, 270 204, 258 198 Z
-            "
-          />
         </g>
       </g>
     </svg>
