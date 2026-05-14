@@ -4,44 +4,37 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Hanji Ivory & Crimson palette (no dark full-page backgrounds)
+        hanji: '#F5EFE0',
+        'hanji-warm': '#EAE0CC',
+        ink: '#14110F',
+        'ink-soft': '#2A2620',
+        crimson: '#8B1A1A',
+        'crimson-deep': '#5C1010',
+        smoke: '#6B6358',
+        aged: '#EAE0CC',
+
+        // Compatibility aliases (keeps existing Tailwind classes working)
         dalbit: {
-          black: '#050507',
-          ink: '#0B0B10',
-          panel: '#111118',
-          line: '#1F1F2A',
-          mist: '#9098B5',
-          silver: '#D8DEEA',
-          // Holographic accent stops
-          pink: '#FF6EC7',
-          violet: '#B084FF',
-          cyan: '#66E1FF',
-          mint: '#6EFFC7',
-          gold: '#FFE066',
-          peach: '#FFB088',
+          black: '#F5EFE0', // hanji ivory background
+          ink: '#14110F', // ink typography / dark surfaces
+          panel: '#EAE0CC', // hanji warm surfaces
+          line: 'rgba(20, 17, 15, 0.12)', // hairline
+          mist: '#6B6358', // smoke body text
+          silver: '#14110F', // ink as default text
         },
       },
       fontFamily: {
-        display: ['"Alfa Slab One"', 'serif'],
-        slab: ['"Roboto Slab"', 'serif'],
-        body: ['"Roboto Slab"', 'serif'],
+        display: ['"Cormorant Garamond"', '"Noto Serif KR"', 'serif'],
+        body: ['Inter', '"Pretendard"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+        serifKr: ['"Noto Serif KR"', 'serif'],
+        sansKr: ['"Pretendard"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       backgroundImage: {
-        'holo-linear':
-          'linear-gradient(135deg, #FF6EC7 0%, #B084FF 22%, #66E1FF 42%, #6EFFC7 62%, #FFE066 82%, #FFB088 100%)',
-        'holo-conic':
-          'conic-gradient(from 200deg at 50% 50%, #FF6EC7, #B084FF, #66E1FF, #6EFFC7, #FFE066, #FFB088, #FF6EC7)',
-        'holo-soft':
-          'radial-gradient(circle at 30% 20%, rgba(255,110,199,0.18), transparent 40%), radial-gradient(circle at 70% 70%, rgba(102,225,255,0.18), transparent 45%), radial-gradient(circle at 50% 90%, rgba(110,255,199,0.12), transparent 50%)',
-      },
-      animation: {
-        shimmer: 'shimmer 8s linear infinite',
-        'shimmer-slow': 'shimmer 16s linear infinite',
-      },
-      keyframes: {
-        shimmer: {
-          '0%': { backgroundPosition: '0% 50%' },
-          '100%': { backgroundPosition: '200% 50%' },
-        },
+        // Keep existing utility name `bg-holo-linear` alive (used in badges),
+        // but replace it with a restrained crimson accent.
+        'holo-linear': 'linear-gradient(135deg, #8B1A1A 0%, #5C1010 100%)',
       },
     },
   },
